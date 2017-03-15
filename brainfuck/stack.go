@@ -2,33 +2,41 @@ package brainfuck
 
 import "fmt"
 
-type Node struct {
+type StackNode struct {
 	Value int
 }
 
-func (n *Node) String() string {
+func (n *StackNode) String() string {
 	return fmt.Sprint(n.Value)
 }
 
-func (n *Node) Equals(i int) bool {
+func (n *StackNode) Equals(i int) bool {
 	return n != nil && n.Value == i
+}
+
+type Stack struct {
+	nodes []*StackNode
+	count int
 }
 
 func NewStack() *Stack {
 	return &Stack{}
 }
 
-type Stack struct {
-	nodes []*Node
-	count int
+func (s *Stack) String() string {
+	str := ""
+	for i := 0; i < s.count; i++ {
+		str = fmt.Sprintf("%s[%d]%v:", str, i, s.nodes[i])
+	}
+	return str
 }
 
-func (s *Stack) Push(n *Node) {
+func (s *Stack) Push(n *StackNode) {
 	s.nodes = append(s.nodes[:s.count], n)
 	s.count++
 }
 
-func (s *Stack) Pop() *Node {
+func (s *Stack) Pop() *StackNode {
 	if s.count == 0 {
 		return nil
 	}
@@ -36,11 +44,11 @@ func (s *Stack) Pop() *Node {
 	return s.nodes[s.count]
 }
 
-func (s *Stack) Peek() *Node {
+func (s *Stack) Peek() *StackNode {
 	if s.count == 0 {
 		return nil
 	}
-	return s.nodes[s.count - 1]
+	return s.nodes[s.count-1]
 }
 
 func (s *Stack) Size() int {

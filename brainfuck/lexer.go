@@ -3,9 +3,12 @@ package brainfuck
 // Contains input character position and BrainFuck token
 type LexedToken struct {
 	position int
-	token Token
+	token    Token
 }
 
+func (t LexedToken) String() string {
+	return t.token.String()
+}
 
 // Takes a ASCII bytes and writes LexedTokens sequentially to channel
 func Tokenize(program string) <-chan LexedToken {

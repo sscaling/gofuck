@@ -1,12 +1,10 @@
 package brainfuck
 
 import (
-
-	"testing"
 	"fmt"
+	"testing"
 	"time"
 )
-
 
 func TestInputTokens(t *testing.T) {
 	expected := TokenList{Inc, Dec, IncPointer, DecPointer, Write, Read, JumpForward, JumpBackward}
@@ -17,7 +15,7 @@ func TestInputTokens(t *testing.T) {
 	ch := Tokenize(expected.String())
 
 	for _, e := range expected {
-		token := <- ch
+		token := <-ch
 		if Token(e) != LexedToken(token).token {
 			fmt.Printf("Expected %v, Got %v(%T)\n", e, token, token)
 			t.FailNow()
