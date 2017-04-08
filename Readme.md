@@ -26,3 +26,15 @@ A brainfuck \[[1](http://www.muppetlabs.com/~breadbox/bf/)|[2](https://en.wikipe
     , 	becomes 	*p = getchar();
     [ 	becomes 	while (*p) {
     ] 	becomes 	}
+    
+
+# Compilation
+
+## Pre-requisites
+
+    go get golang.org/x/tools/cmd/goyacc
+
+## Generate
+
+    go generate ./compiler
+

@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	bf "github.com/sscaling/gofuck/brainfuck"
+	//bf "github.com/sscaling/gofuck/brainfuck"
+	"github.com/sscaling/gofuck/compiler"
 	"os"
 )
 
@@ -23,7 +24,9 @@ const rot13 = "-,+[-[>>++++[>++++++++<-]<+<-[>+>+>-[>>>]<[[>+<-]>>+>]<<<<<-]]>>>
 func main() {
 	fmt.Println("Start")
 
-	bf.Interpret(rot13, stdinReader(1), stdoutWriter(1))
+	//bf.Interpret(rot13, stdinReader(1), stdoutWriter(1))
+
+	compiler.Compile("+-[+.[]].")
 
 	fmt.Println("Finish")
 }
